@@ -7,10 +7,14 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const students = require('../data/students.json');
+const _ = require("lodash");
+const students = require("../data/students.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(students)
+  .filter((student) => student.status === "active" && student.attendance < 80)
+  .map((student) => _.pick(student, ["id", "name", "cohort", "attendance"]))
+  .orderBy("attendance", "asc")
+  .value();
 
 console.log(lodashSolution);
 
