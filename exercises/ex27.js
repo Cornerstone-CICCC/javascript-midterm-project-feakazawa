@@ -7,10 +7,14 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const movies = require('../data/movies.json');
+const _ = require("lodash");
+const movies = require("../data/movies.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(movies)
+  .filter((movie) => movie.rating >= 8.0)
+  .map((movie) => _.pick(movie, ["title", "genre", "rating"]))
+  .orderBy(["rating", "title"], ["desc", "asc"])
+  .value();
 
 console.log(lodashSolution);
 
