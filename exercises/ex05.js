@@ -8,10 +8,22 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const products = require('../data/products.json');
+const _ = require("lodash");
+const products = require("../data/products.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(products)
+  .map((product) =>
+    _.assign(product, {
+      marginPercent: `${_.round(((product.price - product.cost) / product.price) * 100, 1)}`,
+    }),
+  )
+  .filter((product) => !product.discontinued)
+  .orderBy("marginPercent", "desc")
+  .take(8)
+  .map((product) =>
+    _.pick(product, ["id", "name", "category", "marginPercent"]),
+  )
+  .value();
 
 console.log(lodashSolution);
 
