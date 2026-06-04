@@ -8,10 +8,20 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const products = require('../data/products.json');
+const _ = require("lodash");
+const products = require("../data/products.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(products)
+  .map((product) => ({
+    ...product,
+    totalUnits: _.sum(_.values(product.sales)),
+    productName: product.name,
+  }))
+  .groupBy("category")
+  .map((product) => _.maxBy(product, "totalUnits"))
+  .map((product) => _.pick(product, ["category", "productName", "totalUnits"]))
+  .orderBy("totalUnits", "desc")
+  .value();
 
 console.log(lodashSolution);
 
