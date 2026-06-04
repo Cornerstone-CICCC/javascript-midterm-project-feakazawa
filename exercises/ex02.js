@@ -7,10 +7,19 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const countries = require('../data/countries.json');
+const _ = require("lodash");
+const countries = require("../data/countries.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(countries)
+  .map((country) =>
+    _.assign(country, {
+      density: `${_.round(country.population / country.area, 1)}`,
+    }),
+  )
+  .filter((country) => country.density > 300.0)
+  .orderBy("density", "desc")
+  .map((country) => _.pick(country, ["name", "region", "density"]))
+  .value();
 
 console.log(lodashSolution);
 
