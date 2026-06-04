@@ -7,10 +7,14 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const countries = require('../data/countries.json');
+const _ = require("lodash");
+const countries = require("../data/countries.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(countries)
+  .filter((country) => country.landlocked)
+  .map((country) => _.pick(country, ["name", "region", "population"]))
+  .orderBy("name", "asc")
+  .value();
 
 console.log(lodashSolution);
 
