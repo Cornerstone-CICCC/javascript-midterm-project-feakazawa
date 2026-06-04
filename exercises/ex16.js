@@ -7,10 +7,23 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const students = require('../data/students.json');
+const _ = require("lodash");
+const students = require("../data/students.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(students)
+  .filter(
+    (student) =>
+      student.status === "active" &&
+      student.campus === "Vancouver" &&
+      student.cohort === "Web-0526",
+  )
+  .map((student) => ({
+    ...student,
+    skillCount: _.size(student.skills),
+  }))
+  .map((student) => _.pick(student, ["id", "name", "attendance", "skillCount"]))
+  .orderBy("attendance", "desc")
+  .value();
 
 console.log(lodashSolution);
 
