@@ -18,10 +18,11 @@ const lodashSolution = _.chain(students)
       student.cohort === "Web-0526",
   )
   .map((student) => ({
-    ...student,
+    id: student.id,
+    name: student.name,
+    attendance: student.attendance,
     skillCount: _.size(student.skills),
   }))
-  .map((student) => _.pick(student, ["id", "name", "attendance", "skillCount"]))
   .orderBy("attendance", "desc")
   .value();
 
