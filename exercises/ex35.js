@@ -7,10 +7,14 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const products = require('../data/products.json');
+const _ = require("lodash");
+const products = require("../data/products.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(products)
+  .filter((product) => product.stock < 30)
+  .map((product) => _.pick(product, ["name", "category", "stock"]))
+  .orderBy(["stock", "name"], ["asc", "asc"])
+  .value();
 
 console.log(lodashSolution);
 
