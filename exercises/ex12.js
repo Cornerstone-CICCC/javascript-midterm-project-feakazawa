@@ -12,7 +12,12 @@ const students = require("../data/students.json");
 
 const lodashSolution = _.chain(students)
   .filter((student) => student.status === "active" && student.attendance < 80)
-  .map((student) => _.pick(student, ["id", "name", "cohort", "attendance"]))
+  .map((student) => ({
+    id: student.id,
+    name: student.name,
+    cohort: student.cohort,
+    attendance: student.attendance,
+  }))
   .orderBy("attendance", "asc")
   .value();
 
