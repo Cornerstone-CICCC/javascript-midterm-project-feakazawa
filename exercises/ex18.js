@@ -12,10 +12,19 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const countries = require('../data/countries.json');
+const _ = require("lodash");
+const countries = require("../data/countries.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(countries)
+  .groupBy("region")
+  .map((country, regionName) => ({
+    region: regionName,
+    countryCount: _.size(country),
+    totalPopulation: _.sumBy(country, "population"),
+  }))
+  .filter((country) => country.countryCount >= 3)
+  .orderBy("totalPopulation", "desc")
+  .value();
 
 console.log(lodashSolution);
 
