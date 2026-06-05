@@ -12,17 +12,18 @@ const _ = require("lodash");
 const products = require("../data/products.json");
 
 const lodashSolution = _.chain(products)
-  .map((product) =>
-    _.assign(product, {
-      marginPercent: `${_.round(((product.price - product.cost) / product.price) * 100, 1)}`,
-    }),
-  )
   .filter((product) => !product.discontinued)
+  .map((product) => ({
+    id: product.id,
+    name: product.name,
+    category: product.category,
+    marginPercent: _.round(
+      ((product.price - product.cost) / product.price) * 100,
+      1,
+    ),
+  }))
   .orderBy("marginPercent", "desc")
   .take(8)
-  .map((product) =>
-    _.pick(product, ["id", "name", "category", "marginPercent"]),
-  )
   .value();
 
 console.log(lodashSolution);
