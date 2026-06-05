@@ -7,10 +7,12 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const countries = require('../data/countries.json');
+const _ = require("lodash");
+const countries = require("../data/countries.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(countries)
+
+  .value();
 
 console.log(lodashSolution);
 

@@ -7,10 +7,12 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const movies = require('../data/movies.json');
+const _ = require("lodash");
+const movies = require("../data/movies.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(movies)
+
+  .value();
 
 console.log(lodashSolution);
 

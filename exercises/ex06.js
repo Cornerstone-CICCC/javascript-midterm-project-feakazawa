@@ -10,10 +10,32 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const products = require('../data/products.json');
+const _ = require("lodash");
+const products = require("../data/products.json");
 
-const lodashSolution = null;
+const categories = {};
+const lodashSolution = _.chain(products)
+  .map((product) => ({
+    ...product,
+    productCount: 1,
+    totalStock: product.stock,
+    inventoryValue: _.round(product.price * product.stock, 2),
+  }))
+  .groupBy("category")
+
+  // .mapValues((product) => _.size(product))
+
+  // .orderBy("inventoryValue", "desc")
+
+  // .map((product) =>
+  //   _.pick(product, [
+  //     "category",
+  //     "productCount",
+  //     "totalStock",
+  //     "inventoryValue",
+  //   ]),
+  // )
+  .value();
 
 console.log(lodashSolution);
 

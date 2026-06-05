@@ -9,10 +9,23 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const countries = require('../data/countries.json');
+const _ = require("lodash");
+const countries = require("../data/countries.json");
 
-const lodashSolution = null;
+let groups = {};
+const lodashSolution = _.chain(countries)
+  .groupBy("region")
+  .map((country) =>
+    _.assign(groups, {
+      countryCount: `${_.countBy(country.region)}`,
+    }),
+  )
+  // .map((country) =>
+  //   _.assign(country, {
+  //     countryCount: `${_.filter((country) => country)}`,
+  //   }),
+  // )
+  .value();
 
 console.log(lodashSolution);
 
