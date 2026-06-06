@@ -14,10 +14,24 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const products = require('../data/products.json');
+const _ = require("lodash");
+const products = require("../data/products.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(products)
+  .map((product) => ({
+    ...product,
+    totalUnitsSold: _.sum(_.values(product.sales)),
+  }))
+  .filter((product) => !product.discontinued)
+  .groupBy("category")
+  .map((product, categoryName) => ({
+    category: categoryName,
+    productCount: _.size(product),
+    totalStock: _.sumBy(product, "stock"),
+    totalUnitsSold: _.sumBy(product, "totalUnitsSold"),
+  }))
+  .orderBy("totalUnitsSold", "desc")
+  .value();
 
 console.log(lodashSolution);
 
