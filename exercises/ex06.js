@@ -15,9 +15,9 @@ const products = require("../data/products.json");
 
 const categories = {};
 const lodashSolution = _.chain(products)
-  .map((product) => ({
-    ...product,
-    inventoryValue: _.round(product.price * product.stock, 2),
+  .map((prod) => ({
+    ...prod,
+    inventoryValue: _.round(prod.price * prod.stock, 2),
   }))
   .groupBy("category")
   .map((product, categoryName) => ({
