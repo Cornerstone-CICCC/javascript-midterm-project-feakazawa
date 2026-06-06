@@ -17,24 +17,16 @@ const categories = {};
 const lodashSolution = _.chain(products)
   .map((product) => ({
     ...product,
-    productCount: 1,
-    totalStock: product.stock,
     inventoryValue: _.round(product.price * product.stock, 2),
   }))
   .groupBy("category")
+  .map((product, categoryName) => ({
+    category: categoryName,
+    productCount: _.size(product),
+    totalStock: _.sumBy(product, "stock"),
+    inventoryValue: _.sumBy(product, "inventoryValue"),
+  }))
 
-  // .mapValues((product) => _.size(product))
-
-  // .orderBy("inventoryValue", "desc")
-
-  // .map((product) =>
-  //   _.pick(product, [
-  //     "category",
-  //     "productCount",
-  //     "totalStock",
-  //     "inventoryValue",
-  //   ]),
-  // )
   .value();
 
 console.log(lodashSolution);
