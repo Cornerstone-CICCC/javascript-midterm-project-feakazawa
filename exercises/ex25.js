@@ -9,10 +9,24 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const movies = require('../data/movies.json');
+const _ = require("lodash");
+const movies = require("../data/movies.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(movies)
+  .map((movie) => ({
+    ...movie,
+    decade: movie.releaseYear >= 2020 ? "2020s" : "2010s",
+  }))
+  .groupBy("decade")
+  .map((movie) => _.maxBy(movie, "rating"))
+  .map((movie) => ({
+    decade: movie.decade,
+    title: movie.title,
+    releaseYear: movie.releaseYear,
+    rating: movie.rating,
+  }))
+  .orderBy("decade", "asc")
+  .value();
 
 console.log(lodashSolution);
 
