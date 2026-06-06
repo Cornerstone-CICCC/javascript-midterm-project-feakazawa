@@ -14,9 +14,13 @@ const lodashSolution = _.chain(students)
   .filter(
     (student) => student.status === "active" && student.campus === "Vancouver",
   )
+  .map((student) => ({
+    name: student.name,
+    cohort: student.cohort,
+    attendance: student.attendance,
+  }))
   .orderBy("attendance", "desc")
   .take(5)
-  .map((student) => _.pick(student, ["name", "cohort", "attendance"]))
   .orderBy(["attendance", "name"], ["desc", "asc"])
   .value();
 
