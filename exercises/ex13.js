@@ -11,9 +11,7 @@
 const _ = require("lodash");
 const students = require("../data/students.json");
 
-const lodashSolution = _.chain(students)
-  .filter((student) => student.status === "active")
-  .value();
+const lodashSolution = _.chain(students).value();
 
 console.log(lodashSolution);
 

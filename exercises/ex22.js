@@ -11,9 +11,7 @@
 const _ = require("lodash");
 const movies = require("../data/movies.json");
 
-const lodashSolution = _.chain(movies)
-  .filter((movie) => ({}))
-  .value();
+const lodashSolution = _.chain(movies).value();
 
 console.log(lodashSolution);
 

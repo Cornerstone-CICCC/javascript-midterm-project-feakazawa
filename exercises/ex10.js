@@ -16,7 +16,7 @@ const lodashSolution = _.chain(students)
   .filter((student) => student.status === "active")
   .map((student) => ({
     ...student,
-    average: _.mapValues((student) => )
+    // average: _.mean((student) => )
   }))
   .value();
 

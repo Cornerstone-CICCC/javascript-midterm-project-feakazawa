@@ -10,9 +10,7 @@
 const _ = require("lodash");
 const products = require("../data/products.json");
 
-const lodashSolution = _.chain(products)
-
-  .value();
+const lodashSolution = _.chain(products).value();
 
 console.log(lodashSolution);
 

@@ -10,9 +10,7 @@
 const _ = require("lodash");
 const countries = require("../data/countries.json");
 
-const lodashSolution = _.chain(countries)
-
-  .value();
+const lodashSolution = _.chain(countries).value();
 
 console.log(lodashSolution);
 
