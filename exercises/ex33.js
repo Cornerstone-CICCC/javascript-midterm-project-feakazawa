@@ -12,7 +12,10 @@ const movies = require("../data/movies.json");
 
 const lodashSolution = _.chain(movies)
   .filter((movie) => movie.genre === "Comedy")
-  .map((movie) => _.pick(movie, ["title", "boxOfficeMillions"]))
+  .map((movie) => ({
+    title: movie.title,
+    boxOfficeMillions: movie.boxOfficeMillions,
+  }))
   .orderBy("boxOfficeMillions", "desc")
   .value();
 
