@@ -14,12 +14,15 @@ const products = require("../data/products.json");
 const lodashSolution = _.chain(products)
   .map((product) => ({
     ...product,
-    totalUnits: _.sum(_.values(product.sales)),
-    productName: product.name,
+    totalUnits: _.sum(_.values(product.sales)), //creates an array with the sales values and sum all of them
   }))
   .groupBy("category")
-  .map((product) => _.maxBy(product, "totalUnits"))
-  .map((product) => _.pick(product, ["category", "productName", "totalUnits"]))
+  .map((product) => _.maxBy(product, "totalUnits")) //return all info about the product with the highest total
+  .map((product) => ({
+    category: product.category,
+    productName: product.name,
+    totalUnits: product.totalUnits,
+  }))
   .orderBy("totalUnits", "desc")
   .value();
 
