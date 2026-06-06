@@ -12,8 +12,8 @@ const movies = require("../data/movies.json");
 
 const lodashSolution = _.chain(movies)
   .groupBy("genre")
-  .map((movie, genreName) => ({
-    genre: genreName,
+  .map((movie, genreNm) => ({
+    genre: genreNm,
     movieCount: _.size(movie),
   }))
   .orderBy("genre", "asc")
