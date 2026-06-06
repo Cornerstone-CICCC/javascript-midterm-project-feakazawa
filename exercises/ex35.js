@@ -12,7 +12,11 @@ const products = require("../data/products.json");
 
 const lodashSolution = _.chain(products)
   .filter((product) => product.stock < 30)
-  .map((product) => _.pick(product, ["name", "category", "stock"]))
+  .map((product) => ({
+    name: product.name,
+    category: product.category,
+    stock: product.stock,
+  }))
   .orderBy(["stock", "name"], ["asc", "asc"])
   .value();
 
