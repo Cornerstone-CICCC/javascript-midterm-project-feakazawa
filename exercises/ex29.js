@@ -12,7 +12,11 @@ const countries = require("../data/countries.json");
 
 const lodashSolution = _.chain(countries)
   .filter((country) => country.landlocked)
-  .map((country) => _.pick(country, ["name", "region", "population"]))
+  .map((country) => ({
+    name: country.name,
+    region: country.region,
+    population: country.population,
+  }))
   .orderBy("name", "asc")
   .value();
 
