@@ -12,10 +12,22 @@
 // Requirement:
 // Provide a Lodash solution.
 
-const _ = require('lodash');
-const products = require('../data/products.json');
+const _ = require("lodash");
+const products = require("../data/products.json");
 
-const lodashSolution = null;
+const lodashSolution = _.chain(products)
+  .map((product) => ({
+    ...product,
+    lowStockCount: product.stock < 25 ? 1 : 0,
+  }))
+  .groupBy("supplier")
+  .map((product, supplierName) => ({
+    supplier: supplierName,
+    productCount: _.size(product),
+    lowStockCount: _.sumBy(product, "lowStockCount"),
+  }))
+  .filter((product) => product.lowStockCount >= 1)
+  .value();
 
 console.log(lodashSolution);
 
