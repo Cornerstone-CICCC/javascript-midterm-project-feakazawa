@@ -11,7 +11,7 @@
 const _ = require("lodash");
 const students = require("../data/students.json");
 
-const lodashSolution = _.chain(students).value();
+const lodashSolution = _.chain(students).value(); // Feedback: Filter active students, flatten skills, count each skill, keep counts >= 5, then sort by count and skill.
 
 console.log(lodashSolution);
 

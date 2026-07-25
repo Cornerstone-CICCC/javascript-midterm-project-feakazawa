@@ -10,7 +10,7 @@
 const _ = require("lodash");
 const countries = require("../data/countries.json");
 
-const lodashSolution = _.chain(countries).value();
+const lodashSolution = _.chain(countries).value(); // Feedback: This returns the raw countries; flatten languages, count them, map to { language, countryCount }, sort, and take 10.
 
 console.log(lodashSolution);
 

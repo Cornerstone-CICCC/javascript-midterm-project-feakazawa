@@ -27,7 +27,7 @@ const lodashSolution = _.chain(products)
     inventoryValue: _.sumBy(product, "inventoryValue"),
   }))
 
-  .value();
+  .value(); // Feedback: Add orderBy('inventoryValue', 'desc') before value() so categories are sorted as required.
 
 console.log(lodashSolution);
 

@@ -27,7 +27,7 @@ const lodashSolution = _.chain(products)
     lowStockCount: _.sumBy(product, "lowStockCount"),
   }))
   .filter((product) => product.lowStockCount >= 1)
-  .value();
+  .value(); // Feedback: Add orderBy(['lowStockCount', 'supplier'], ['desc', 'asc']) before value().
 
 console.log(lodashSolution);
 

@@ -21,9 +21,9 @@ const lodashSolution = _.chain(students)
   .map((student, campusName) => ({
     campus: campusName,
     activeStudentCount: _.size(student),
-    studentNames: _.fill(student, student.name),
+    studentNames: _.fill(student, student.name), // Feedback: student is the whole campus group, so map the group to names and sort them instead of filling the array.
   }))
-  .value();
+  .value(); // Feedback: Add the required orderBy(['activeStudentCount', 'campus'], ['desc', 'asc']) before value().
 
 console.log(lodashSolution);
 

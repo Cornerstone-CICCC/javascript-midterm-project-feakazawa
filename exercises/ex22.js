@@ -11,7 +11,7 @@
 const _ = require("lodash");
 const movies = require("../data/movies.json");
 
-const lodashSolution = _.chain(movies).value();
+const lodashSolution = _.chain(movies).value(); // Feedback: This returns raw movies; flatten movie.streaming, count services, keep counts >= 5, then sort.
 
 console.log(lodashSolution);
 

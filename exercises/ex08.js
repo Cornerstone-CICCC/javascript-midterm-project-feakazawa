@@ -10,7 +10,7 @@
 const _ = require("lodash");
 const products = require("../data/products.json");
 
-const lodashSolution = _.chain(products).value();
+const lodashSolution = _.chain(products).value(); // Feedback: This returns raw products; build an object grouped by each tag with sorted product-name arrays.
 
 console.log(lodashSolution);
 

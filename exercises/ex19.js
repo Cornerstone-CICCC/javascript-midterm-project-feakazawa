@@ -18,7 +18,7 @@ const lodashSolution = _.chain(movies)
     releaseYear: movie.releaseYear,
     rating: movie.rating,
   }))
-  .orderBy("rating", "desc")
+  .orderBy("rating", "desc") // Feedback: Include releaseYear as the secondary sort key descending for movies with the same rating.
   .value();
 
 console.log(lodashSolution);

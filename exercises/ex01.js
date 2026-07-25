@@ -13,10 +13,10 @@ const lodashSolution = _.chain(countries)
   .filter((country) => country.region === "Africa")
   .map((country) => ({
     name: country.name,
-    popualtion: country.population,
+    popualtion: country.population, // Feedback: The expected property is population; this typo also means the later sort key is missing.
     subregion: country.subregion,
   }))
-  .orderBy("population", "desc")
+  .orderBy("population", "desc") // Feedback: Sort before mapping, or map the property as population before sorting by it.
   .take(5)
   .value();
 

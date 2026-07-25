@@ -16,7 +16,7 @@ const lodashSolution = _.chain(students)
   .filter((student) => student.status === "active")
   .map((student) => ({
     ...student,
-    // average: _.mean((student) => )
+    // average: _.mean((student) => ) // Feedback: Average should use the score values from both student.courses and student.projects, then round to 1 decimal.
   }))
   .value();
 
